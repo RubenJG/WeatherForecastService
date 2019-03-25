@@ -133,9 +133,6 @@ cmake-build-*/
 # IntelliJ
 out/
 
-# mpeltonen/sbt-idea plugin
-.idea_modules/
-
 # JIRA plugin
 atlassian-ide-plugin.xml
 
@@ -145,8 +142,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+*.iml
 
 ###############################################
 ## Java #######################################
