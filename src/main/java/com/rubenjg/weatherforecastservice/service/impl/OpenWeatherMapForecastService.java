@@ -16,17 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class OpenWeatherMapForecastService implements ForecastService {
@@ -49,7 +42,6 @@ public class OpenWeatherMapForecastService implements ForecastService {
 
     @Override
     public ForecastDto get3DayForecast(String cityName) {
-
         Response response = openWeatherMapFeignClient.getForecast(cityName, applicationKey);
         List<Forecast> forecasts = response.getList();
 
@@ -87,22 +79,5 @@ public class OpenWeatherMapForecastService implements ForecastService {
         OffsetDateTime today = Instant.ofEpochSecond(forecasts.get(0).getDt()).atOffset(ZoneOffset.UTC);
         TemperatureDto temperatureDto = new TemperatureDto(dayTime, nightTime);
         return new ForecastDto(today, temperatureDto, pressure);
-    }
-
-    private Response fakeApi() {
-        Response response = null;
-        try {
-            URL url = getClass().getClassLoader().getResource("forecast.json");
-            Objects.requireNonNull(url);
-            Path path = Paths.get(url.toURI());
-
-            Stream<String> lines = Files.lines(path);
-            String data = lines.collect(Collectors.joining("\n"));
-            lines.close();
-
-            response = objectMapper.readValue(data, Response.class);
-        } catch (Exception e) {
-        }
-        return response;
     }
 }
