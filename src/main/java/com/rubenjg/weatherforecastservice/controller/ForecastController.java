@@ -1,6 +1,7 @@
 package com.rubenjg.weatherforecastservice.controller;
 
 import com.rubenjg.weatherforecastservice.dto.ForecastDto;
+import com.rubenjg.weatherforecastservice.exception.ForecastException;
 import com.rubenjg.weatherforecastservice.service.ForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class ForecastController {
     }
 
     @GetMapping()
-    public ResponseEntity<ForecastDto> getData(@RequestParam("cityName") String cityName) {
-        ForecastDto forecastDto = forecastService.getForecast(cityName);
+    public ResponseEntity<ForecastDto> getData(@RequestParam("cityName") String cityName) throws ForecastException {
+        ForecastDto forecastDto = forecastService.get3DayForecast(cityName);
         return new ResponseEntity<>(forecastDto, HttpStatus.OK);
     }
 }

@@ -18,7 +18,20 @@ management:
       exposure:
         include: '*'
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
 logging:
   level:
     root: INFO
     com.rubenjg.weatherforecastservice: DEBUG
+
+service:
+  open-weather-map:
+    url:
+    api-key: <insert-api-key-here>
