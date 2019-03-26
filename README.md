@@ -10,8 +10,8 @@ Open Feign makes a good choice to consume an API. This services consumes the Ope
 Map API. There is an ErrorDecoder to catch any non 200 errors from the API.
 
 Spring Validation is used to ensure the city name size is between 1 and 100. These limits 
-were chosen arbitrarily. I would've also user a regular expression, but I haven't checked
-characters are valid in the Open Weather Map API.
+were chosen arbitrarily. I would've also used a regular expression, but I haven't checked
+which characters are valid in the Open Weather Map API.
 
 The service is divided in the following layers:
 * **client** For Feign clients.
@@ -22,6 +22,7 @@ The service is divided in the following layers:
 Open Weather Map API
 
 There is a similar division for the tests. Most classes that end with *Tests* are Unit Tests.
+`ForecastControllerIntegrationTests` contains Integration tests.
 
 Swagger is chosen to document the API and it can be found in 
 http://localhost:8080/forecasts/swagger-ui.html when the application is running. It can also 
