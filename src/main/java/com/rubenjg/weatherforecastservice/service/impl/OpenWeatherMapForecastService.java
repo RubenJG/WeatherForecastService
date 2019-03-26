@@ -1,9 +1,9 @@
 package com.rubenjg.weatherforecastservice.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rubenjg.weatherforecastservice.client.OpenWeatherMapFeignClient;
 import com.rubenjg.weatherforecastservice.dto.ForecastDto;
 import com.rubenjg.weatherforecastservice.dto.TemperatureDto;
-import com.rubenjg.weatherforecastservice.exception.ForecastException;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Forecast;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Main;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Response;
@@ -11,7 +11,10 @@ import com.rubenjg.weatherforecastservice.service.ForecastService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URL;
 import java.nio.file.Files;
@@ -31,20 +34,29 @@ public class OpenWeatherMapForecastService implements ForecastService {
     private Logger logger = LoggerFactory.getLogger(OpenWeatherMapForecastService.class);
 
     private final ObjectMapper objectMapper;
+    private final OpenWeatherMapFeignClient openWeatherMapFeignClient;
+    private final String applicationKey;
 
     @Autowired
-    public OpenWeatherMapForecastService(ObjectMapper objectMapper) {
+    public OpenWeatherMapForecastService(
+            ObjectMapper objectMapper,
+            OpenWeatherMapFeignClient openWeatherMapFeignClient,
+            @Value("${service.open-weather-map.api-key}") String applicationKey) {
         this.objectMapper = objectMapper;
+        this.openWeatherMapFeignClient = openWeatherMapFeignClient;
+        this.applicationKey = applicationKey;
     }
 
     @Override
-    public ForecastDto get3DayForecast(String cityName) throws ForecastException {
+    public ForecastDto get3DayForecast(String cityName) {
 
-        Response response = fakeApi();
+        Response response = openWeatherMapFeignClient.getForecast(cityName, applicationKey);
         List<Forecast> forecasts = response.getList();
 
-        if (forecasts == null || forecasts.size() != 40) {
-            throw new ForecastException("Invalid response from Open Weather Map");
+        if (forecasts == null || forecasts.size() < 24) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Invalid response from Open Weather Map");
         }
 
         Double dayTime = 0.0;

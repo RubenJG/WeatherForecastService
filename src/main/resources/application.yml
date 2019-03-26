@@ -1,7 +1,8 @@
-
 spring:
   application:
     name: weather-forecast-service
+  profiles:
+    active: default
 
 server:
   port: 8080
@@ -25,6 +26,7 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+        errorDecoder: com.rubenjg.weatherforecastservice.client.DefaultErrorDecoder
 
 logging:
   level:
@@ -33,5 +35,5 @@ logging:
 
 service:
   open-weather-map:
-    url:
+    url: http://api.openweathermap.org
     api-key: <insert-api-key-here>
