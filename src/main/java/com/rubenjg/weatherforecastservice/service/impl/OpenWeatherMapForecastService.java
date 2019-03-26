@@ -42,6 +42,7 @@ public class OpenWeatherMapForecastService implements ForecastService {
 
     @Override
     public ForecastDto get3DayForecast(String cityName) {
+        logger.debug("get3DayForecast({})", cityName);
         Response response = openWeatherMapFeignClient.getForecast(cityName, applicationKey);
         List<Forecast> forecasts = response.getList();
 

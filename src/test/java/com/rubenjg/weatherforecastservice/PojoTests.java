@@ -3,7 +3,6 @@ package com.rubenjg.weatherforecastservice;
 import com.google.code.beanmatchers.BeanMatchers;
 import com.rubenjg.weatherforecastservice.dto.ForecastDto;
 import com.rubenjg.weatherforecastservice.dto.TemperatureDto;
-import com.rubenjg.weatherforecastservice.model.openweathermap.City;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Forecast;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Main;
 import com.rubenjg.weatherforecastservice.model.openweathermap.Response;
@@ -27,7 +26,6 @@ public class PojoTests {
     @Test
     public void testForecastDto() {
         // Models
-        MatcherAssert.assertThat(City.class, isValidBean());
         MatcherAssert.assertThat(Forecast.class, isValidBean());
         MatcherAssert.assertThat(Main.class, isValidBean());
         MatcherAssert.assertThat(Response.class, isValidBean());

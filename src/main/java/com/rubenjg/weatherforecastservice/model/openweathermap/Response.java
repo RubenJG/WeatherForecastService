@@ -5,16 +5,7 @@ import java.util.Objects;
 
 public class Response {
 
-    private City city;
     private List<Forecast> list;
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
 
     public List<Forecast> getList() {
         return list;
@@ -29,20 +20,18 @@ public class Response {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Response response = (Response) o;
-        return Objects.equals(city, response.city) &&
-                Objects.equals(list, response.list);
+        return Objects.equals(list, response.list);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(city, list);
+        return Objects.hash(list);
     }
 
     @Override
     public String toString() {
         return "Response{" +
-                "city=" + city +
-                ", list=" + list +
+                "list=" + list +
                 '}';
     }
 }
