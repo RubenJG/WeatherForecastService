@@ -13,17 +13,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @RunWith(MockitoJUnitRunner.class)
 public class OpenWeatherMapForecastServiceTests {
 
-    private final ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private OpenWeatherMapFeignClient openWeatherMapFeignClient;
 
     private OpenWeatherMapForecastService service;
-
-    @Autowired
-    public OpenWeatherMapForecastServiceTests(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
 
     @Before
     public void setUp() throws Exception {
