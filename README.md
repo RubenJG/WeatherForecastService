@@ -23,6 +23,10 @@ Open Weather Map API
 
 There is a similar division for the tests. Most classes that end with *Tests* are Unit Tests.
 
+Swagger is chosen to document the API and it can be found in 
+http://localhost:8080/forecasts/swagger-ui.html when the application is running. It can also 
+be used to test the API
+
 ## How do I run and test this project?
 
 The easiest way to run this project is with Gradle Wrapper.
