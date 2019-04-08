@@ -37,3 +37,5 @@ service:
   open-weather-map:
     url: http://api.openweathermap.org
     api-key: <insert-api-key-here>
+
+

@@ -1,8 +1,8 @@
-package com.rubenjg.weatherforecastservice.model.openweathermap;
+package com.rubenjg.weatherforecastservice.model.calculation;
 
 import java.util.Objects;
 
-public class Main {
+public class Data {
 
     private Double temp;
     private Double pressure;
@@ -27,9 +27,9 @@ public class Main {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Main main = (Main) o;
-        return Objects.equals(temp, main.temp) &&
-                Objects.equals(pressure, main.pressure);
+        Data data = (Data) o;
+        return Objects.equals(temp, data.temp) &&
+                Objects.equals(pressure, data.pressure);
     }
 
     @Override

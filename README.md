@@ -33,7 +33,7 @@ be used to test the API
 The easiest way to run this project is with Gradle Wrapper.
 
 1. Replace the value `<insert-api-key-here>` of `service.open-weather-map.api-key` 
-in the file `src/main/resources/application.yml`.
+in the file `src/data/resources/application.yml`.
 Alternatively you can provide a `SERVICE_OPEN-WEATHER-MAP_API-KEY` environment variable.  
 2. Open the terminal
 3. Navigate to the folder in which the project is located

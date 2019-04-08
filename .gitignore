@@ -113,7 +113,7 @@ local.properties
 .apt_generated/
 
 # Scala IDE specific (Scala & Java development for Eclipse)
-.cache-main
+.cache-data
 .scala_dependencies
 .worksheet
 

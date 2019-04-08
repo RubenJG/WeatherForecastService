@@ -1,9 +1,9 @@
-package com.rubenjg.weatherforecastservice.model.openweathermap;
+package com.rubenjg.weatherforecastservice.model.calculation;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Response {
+public class ForecastContainer {
 
     private List<Forecast> list;
 
@@ -19,8 +19,8 @@ public class Response {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Response response = (Response) o;
-        return Objects.equals(list, response.list);
+        ForecastContainer forecastContainer = (ForecastContainer) o;
+        return Objects.equals(list, forecastContainer.list);
     }
 
     @Override

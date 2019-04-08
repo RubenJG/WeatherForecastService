@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class OpenWeatherMapForecastServiceTests {
+public class OpenWeatherMapDataForecastServiceTests {
 
     private static final Random RANDOM = new Random();
 
@@ -31,11 +31,11 @@ public class OpenWeatherMapForecastServiceTests {
     @Mock
     private OpenWeatherMapFeignClient openWeatherMapFeignClient;
 
-    private OpenWeatherMapForecastService service;
+    private OpenWeatherMapDataForecastService service;
 
     @Before
     public void setUp() throws Exception {
-        service = new OpenWeatherMapForecastService(
+        service = new OpenWeatherMapDataForecastService(
                 objectMapper,
                 openWeatherMapFeignClient,
                 "test");

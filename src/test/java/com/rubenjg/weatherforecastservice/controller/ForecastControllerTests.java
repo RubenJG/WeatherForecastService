@@ -1,7 +1,7 @@
 package com.rubenjg.weatherforecastservice.controller;
 
 import com.rubenjg.weatherforecastservice.dto.ForecastDto;
-import com.rubenjg.weatherforecastservice.service.ForecastService;
+import com.rubenjg.weatherforecastservice.service.ForecastDataService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,18 +19,18 @@ import static org.mockito.Mockito.when;
 public class ForecastControllerTests {
 
     @Mock
-    private ForecastService forecastService;
+    private ForecastDataService forecastDataService;
 
     private ForecastController forecastController;
 
     @Before
     public void setUp() throws Exception {
-        forecastController = new ForecastController(forecastService);
+        forecastController = new ForecastController(forecastDataService);
     }
 
     @Test
     public void getData_Successful() {
-        when(forecastService.get3DayForecast(anyString())).thenReturn(new ForecastDto());
+        when(forecastDataService.get3DayForecast(anyString())).thenReturn(new ForecastDto());
 
         ResponseEntity<ForecastDto> responseEntity = forecastController.getData("test");
 
